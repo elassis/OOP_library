@@ -5,7 +5,7 @@ class Person
     @name = name
     @age = age
     @parent_permission = parent_permission
-    @correct = Corrector.new
+    @corrector = Corrector.new
   end
 
   def getid
@@ -33,8 +33,7 @@ class Person
   end
 
   def correct_name
-    mod_name = @correct.correctname(@name)
-    @name = mod_name
+    @name = @corrector.correct_name(@name)
   end
   # private methods
 
