@@ -1,29 +1,21 @@
 class Person
+  # attr_accessor :name, :age, :parent_permission
+  # attr_reader :id
+
   def initialize(age, name = 'unknown', parent_permission: true)
-    @id = rand(1...100)
     @name = name
     @age = age
     @parent_permission = parent_permission
+    @id = rand(1...100)
   end
-
-  def getid
-    @id
-  end
-
   def getname
     @name
   end
-
   def getage
     @age
   end
-
-  def setname=(data)
-    @name = data
-  end
-
-  def setage=(data)
-    @age = data
+  def setname
+    @name
   end
 
   def can_use_services?
@@ -38,4 +30,6 @@ class Person
   end
 end
 
-Person.new('JHON', true, 17)
+person_new = Person.new(19, "Jhon", true)
+
+puts person_new
