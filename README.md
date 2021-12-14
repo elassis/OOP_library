@@ -4,9 +4,6 @@
 
 > This project is about creating a Library System that saves users and books and users can borrow books.
 
-![screenshot](./app_screenshot.png)
-
-
 ## Built With
 
 - Ruby

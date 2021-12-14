@@ -10,3 +10,6 @@ class Teacher < Person
     true
   end
 end
+
+teacher = Teacher.new('Mike', true, 21, 'history')
+p teacher
