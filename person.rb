@@ -1,4 +1,6 @@
 require './corrector'
+# my sistem has a bug that when i run the function can use service? 
+# if a declare the parent permission as true it returns false
 class Person
   def initialize(age, name = 'unknown', parent_permission: true)
     @id = rand(1...100)
@@ -29,7 +31,7 @@ class Person
   end
 
   def can_use_services?
-    is_of_age? && @parent_permission == true
+    is_of_age? && @parent_permission != true
   end
 
   def correct_name
