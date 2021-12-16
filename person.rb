@@ -1,11 +1,14 @@
 require './corrector'
 class Person
+  attr_reader :rentals
+
   def initialize(age, name = 'unknown', parent_permission: true)
     @id = rand(1...100)
     @name = name
     @age = age
     @parent_permission = parent_permission
     @corrector = Corrector.new
+    @rentals = []
   end
 
   def getid
@@ -34,6 +37,10 @@ class Person
 
   def correct_name
     @name = @corrector.correct_name(@name)
+  end
+
+  def add_rental(rental)
+    @rentals.push(rental)
   end
   # private methods
 
