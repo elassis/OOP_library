@@ -2,7 +2,7 @@ require './corrector'
 class Person
   attr_reader :rentals
 
-  def initialize(age, name = 'unknown', parent_permission: true)
+  def initialize(age:, name: 'unknown', parent_permission: true)
     @id = rand(1...100)
     @name = name
     @age = age
