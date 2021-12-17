@@ -1,8 +1,11 @@
 require './person'
 
 class Teacher < Person
-  def initialize(name, parent_permission, age, specialization)
-    super(name, parent_permission, age)
+  attr_accessor :age, :name, :id
+
+  def initialize(age, name, specialization)
+    super(age, name, id)
+    @id = rand(1...100)
     @specialization = specialization
   end
 
@@ -10,6 +13,3 @@ class Teacher < Person
     true
   end
 end
-
-teacher = Teacher.new('Mike', true, 21, 'history')
-p teacher
