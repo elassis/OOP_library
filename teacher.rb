@@ -1,7 +1,9 @@
 require './person'
 
 class Teacher < Person
-  def initialize(name, parent_permission, age, specialization)
+  attr_reader :name, :id, :age
+
+  def initialize(age, name, specialization, parent_permission: true)
     super(name, parent_permission, age)
     @specialization = specialization
   end
@@ -10,6 +12,3 @@ class Teacher < Person
     true
   end
 end
-
-teacher = Teacher.new('Mike', true, 21, 'history')
-p teacher
