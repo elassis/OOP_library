@@ -48,7 +48,7 @@ class App
     print 'Has permission? [y, n] '
     permission = gets.chomp
     permission = permission == 'y'
-    @list_people.push(Student.new(age, name, permission))
+    @list_people.push(Student.new(age: age, name: name, parent_permission: permission))
     puts 'Student created Succesfully'
     show_menu
   end
@@ -60,7 +60,8 @@ class App
     age = gets.chomp
     print 'Insert Specialization: '
     spec = gets.chomp
-    @list_people.push(Teacher.new(age, name, spec))
+    parent_auto = true
+    @list_people.push(Teacher.new(age: age, name: name, specialization: spec, parent_permission: parent_auto))
     puts 'Teacher created Succesfully'
     show_menu
   end
