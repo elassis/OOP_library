@@ -3,41 +3,43 @@ require './student'
 require './teacher'
 require './rental'
 require './people_manager'
+require './books_manager'
+
 class App
   def initialize
-    @list_books = []
+    @books = BooksManager.new
     @list_rentals = []
     @people = PeopleManager.new
   end
 
-  # Books Block
-  def insert_book
-    print 'Insert Title: '
-    title = gets.chomp
-    print 'Insert Author: '
-    author = gets.chomp
-    new_book = Book.new(title, author)
-    @list_books.push(new_book)
-    puts 'Book created Succesfully'
-    show_menu
-  end
+  # # Books Block
+  # def insert_book
+  #   print 'Insert Title: '
+  #   title = gets.chomp
+  #   print 'Insert Author: '
+  #   author = gets.chomp
+  #   new_book = Book.new(title, author)
+  #   @list_books.push(new_book)
+  #   puts 'Book created Succesfully'
+  #   show_menu
+  # end
 
-  def show_books
-    if @list_books.any? == false
-      puts "There's no books registered, Press 1 to return"
-      selected = gets.chomp
-      show_menu if selected == '1'
-    else
-      @list_books.each { |b| puts "Title: #{b.title} Author: #{b.author}" }
-      puts 'Add another Book ? [1:yes no:2]'
-      option = gets.chomp
-      if option == '1'
-        insert_book
-      else
-        show_menu
-      end
-    end
-  end
+  # def show_books
+  #   if @list_books.any? == false
+  #     puts "There's no books registered, Press 1 to return"
+  #     selected = gets.chomp
+  #     show_menu if selected == '1'
+  #   else
+  #     @list_books.each { |b| puts "Title: #{b.title} Author: #{b.author}" }
+  #     puts 'Add another Book ? [1:yes no:2]'
+  #     option = gets.chomp
+  #     if option == '1'
+  #       insert_book
+  #     else
+  #       show_menu
+  #     end
+  #   end
+  # end
 
   #============================
   # People Block
@@ -143,13 +145,13 @@ class App
   def read_input(num)
     case num
     when '1'
-      show_books
+      @books.show_books
     when '2'
       @people.show_people
     when '3'
       @people.insert_people
     when '4'
-      insert_book
+      @books.insert_book
     when '5'
       insert_rentals
     when '6'

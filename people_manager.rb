@@ -60,11 +60,7 @@ class PeopleManager
 
   def display_people
     @list_people.each do |b|
-      if b.is_a?(Student)
-        puts " [Student] Name: #{b.name} ID: #{b.id} Age: #{b.age}"
-      else
-        puts " [Teacher] Name: #{b.name} ID: #{b.id} Age: #{b.age}"
-      end
+      puts " [#{b.class}] Name: #{b.name} ID: #{b.id} Age: #{b.age}"
     end
     puts 'Press 1 to return'
     option = gets.chomp
