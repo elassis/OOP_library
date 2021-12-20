@@ -12,6 +12,7 @@ class App
     @people = PeopleManager.new
     @rentals = RentalsManager.new(@books, @people)
   end
+
   #============================
   def read_input(num)
     case num
@@ -40,6 +41,7 @@ class App
       puts "5) Create a Rental\n6) List all rentals for a given person id\n7) Exit"
       option = gets.chomp
       break if option == '7'
+
       read_input(option)
     end
   end

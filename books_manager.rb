@@ -1,5 +1,4 @@
 class BooksManager
-
   attr_reader :list_books
 
   def initialize

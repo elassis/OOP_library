@@ -31,7 +31,6 @@ class PeopleManager
     parent_auto = true
     @list_people.push(Teacher.new(age: age, name: name, specialization: spec, parent_permission: parent_auto))
     puts 'Teacher created Succesfully'
-    
   end
 
   def insert_people
@@ -42,8 +41,8 @@ class PeopleManager
       insert_student
     when '2'
       insert_teacher
-    # else
-    #   show_menu
+      # else
+      #   show_menu
     end
   end
 
@@ -77,5 +76,4 @@ class PeopleManager
     @list_people.each_with_index { |p, i| puts "#{i}) Name: #{p.name} ID: #{p.id} Age: #{p.age}" }
     idx_person = gets.chomp.to_i
   end
-
 end
