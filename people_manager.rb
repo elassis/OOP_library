@@ -1,35 +1,25 @@
 require './student'
 require './teacher'
+require './user_inputs'
 
 class PeopleManager
   attr_reader :list_people
 
   def initialize
     @list_people = []
+    @user_inputs = UserInputs.new
   end
 
-  # People Block
   def insert_student
-    print 'Insert Name:'
-    name = gets.chomp
-    print 'Insert Age:'
-    age = gets.chomp
-    print 'Has permission? [y, n] '
-    permission = gets.chomp
-    permission = permission == 'y'
-    @list_people.push(Student.new(age: age, name: name, parent_permission: permission))
+    data = @user_inputs.input_data_student
+    @list_people.push(Student.new(age: data['age'], name: data['name'], parent_permission: data['permission']))
     puts 'Student created Succesfully'
   end
 
   def insert_teacher
-    print 'Insert Name: '
-    name = gets.chomp
-    print 'Insert Age: '
-    age = gets.chomp
-    print 'Insert Specialization: '
-    spec = gets.chomp
-    parent_auto = true
-    @list_people.push(Teacher.new(age: age, name: name, specialization: spec, parent_permission: parent_auto))
+    data = @user_inputs.input_data_teacher
+    @list_people.push(Teacher.new(age: data['age'], name: data['name'], specialization: data['spec'],
+                                  parent_permission: data['permission']))
     puts 'Teacher created Succesfully'
   end
 
