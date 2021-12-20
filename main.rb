@@ -13,7 +13,6 @@ class App
     @rentals = RentalsManager.new(@books, @people)
   end
 
-  #============================
   def read_input(num)
     case num
     when '1'
@@ -28,9 +27,6 @@ class App
       @rentals.insert_rentals
     when '6'
       @rentals.show_rentals
-    else
-      puts 'Thank you for using this App.'
-      exit
     end
   end
 

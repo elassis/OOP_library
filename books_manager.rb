@@ -24,17 +24,13 @@ class BooksManager
       @list_books.each { |b| puts "Title: #{b.title} Author: #{b.author}" }
       puts 'Add another Book ? [1:yes no:2]'
       option = gets.chomp
-      if option == '1'
-        insert_book
-      else
-        return
-      end
+      insert_book if option == '1'
     end
   end
 
   def display_books_with_index
     puts 'Select One of the books bellow by number:'
     @list_books.each_with_index { |b, i| puts "#{i}) Title: #{b.title} Author: #{b.author}" }
-    idx_book = gets.chomp.to_i
+    gets.chomp.to_i
   end
 end

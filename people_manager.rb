@@ -52,7 +52,7 @@ class PeopleManager
       selected = gets.chomp
       case selected
       when '1'
-        return
+        nil
       end
     else
       display_people
@@ -67,13 +67,13 @@ class PeopleManager
     option = gets.chomp
     case option
     when '1'
-      return
+      nil
     end
   end
 
   def display_people_with_index
     puts 'Select One of the people bellow by number (not ID):'
     @list_people.each_with_index { |p, i| puts "#{i}) Name: #{p.name} ID: #{p.id} Age: #{p.age}" }
-    idx_person = gets.chomp.to_i
+    gets.chomp.to_i
   end
 end
