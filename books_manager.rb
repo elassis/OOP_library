@@ -1,4 +1,7 @@
 class BooksManager
+
+  attr_reader :list_books
+
   def initialize
     @list_books = []
   end
@@ -28,5 +31,11 @@ class BooksManager
         return
       end
     end
+  end
+
+  def display_books_with_index
+    puts 'Select One of the books bellow by number:'
+    @list_books.each_with_index { |b, i| puts "#{i}) Title: #{b.title} Author: #{b.author}" }
+    idx_book = gets.chomp.to_i
   end
 end

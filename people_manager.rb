@@ -2,6 +2,8 @@ require './student'
 require './teacher'
 
 class PeopleManager
+  attr_reader :list_people
+
   def initialize
     @list_people = []
   end
@@ -69,4 +71,11 @@ class PeopleManager
       return
     end
   end
+
+  def display_people_with_index
+    puts 'Select One of the people bellow by number (not ID):'
+    @list_people.each_with_index { |p, i| puts "#{i}) Name: #{p.name} ID: #{p.id} Age: #{p.age}" }
+    idx_person = gets.chomp.to_i
+  end
+
 end
