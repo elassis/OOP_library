@@ -1,8 +1,10 @@
+require './json_accessor'
+
 class BooksManager
   attr_reader :list_books
 
-  def initialize
-    @list_books = []
+  def initialize(books_accessor)
+    @list_books = books_accessor.fetch_data
   end
 
   def insert_book
