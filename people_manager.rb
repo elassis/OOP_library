@@ -1,17 +1,19 @@
 require './student'
 require './teacher'
 require './user_inputs'
+require './json_accessors'
 
 class PeopleManager
   attr_reader :list_people
 
-  def initialize
-    @list_people = []
+  def initialize(people_accessor)
+    @list_people = people_accessor.fetch_data
     @user_inputs = UserInputs.new
   end
 
   def insert_student
     data = @user_inputs.input_data_student
+    #@list_people.push(Student.new(age: data['age'], name: data['name'], parent_permission: data['permission']))
     @list_people.push(Student.new(age: data['age'], name: data['name'], parent_permission: data['permission']))
     puts 'Student created Succesfully'
   end
@@ -31,8 +33,6 @@ class PeopleManager
       insert_student
     when '2'
       insert_teacher
-      # else
-      #   show_menu
     end
   end
 
@@ -53,6 +53,7 @@ class PeopleManager
     @list_people.each do |b|
       puts " [#{b.class}] Name: #{b.name} ID: #{b.id} Age: #{b.age}"
     end
+    #puts @list_people
     puts 'Press 1 to return'
     option = gets.chomp
     case option
