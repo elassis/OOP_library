@@ -13,7 +13,7 @@ class PeopleManager
 
   def insert_student
     data = @user_inputs.input_data_student
-    #@list_people.push(Student.new(age: data['age'], name: data['name'], parent_permission: data['permission']))
+    # @list_people.push(Student.new(age: data['age'], name: data['name'], parent_permission: data['permission']))
     @list_people.push(Student.new(age: data['age'], name: data['name'], parent_permission: data['permission']))
     puts 'Student created Succesfully'
   end
@@ -53,7 +53,7 @@ class PeopleManager
     @list_people.each do |b|
       puts " [#{b.class}] Name: #{b.name} ID: #{b.id} Age: #{b.age}"
     end
-    #puts @list_people
+    # puts @list_people
     puts 'Press 1 to return'
     option = gets.chomp
     case option

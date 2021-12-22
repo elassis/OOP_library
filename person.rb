@@ -3,7 +3,7 @@ class Person
   attr_reader :rentals
 
   def initialize(age:, name: 'unknown', parent_permission: true, id: 0)
-    @id = id == 0 ? rand(1...100) : id 
+    @id = id.zero? ? rand(1...100) : id
     @name = name
     @age = age
     @parent_permission = parent_permission
