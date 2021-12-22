@@ -6,40 +6,54 @@ class JsonAccessor
     @type = type
   end
 
-  def find_person(people, id); end
-
-  def find_book(books, id); end
-
-  def fetch_data(list_book = [], list_people = [])
+  def extract_data
     if File.exist?("#{@type}.json")
       data = File.read("#{@type}.json")
-      array_hashes = JSON.parse(data)
-      array_object = []
-      case @type
-      when 'books'
-        array_object = array_hashes.map { |book| Book.new(book['title'], book['author'], book['id']) }
-      when 'people'
-        array_object = array_hashes.map do |people|
-          if people['class'] == 'Student'
-            Student.new(age: people['age'], name: people['name'],
-                        parent_permission: people['permission'], id: people['id'])
-          else
-            Teacher.new(age: people['age'], name: people['name'], specialization: people['spec'],
-                        parent_permission: people['permission'], id: people['id'])
-          end
-        end
-      when 'rental'
-        array_object = array_hashes.map do |rental|
-          Rental.new(rental['date'], list_book.detect do |b|
-                                       b.id == rental['book']
-                                     end, list_people.detect do |p|
-                                            p.id == rental['person']
-                                          end)
-        end
-      end
-      return array_object
+      return JSON.parse(data)
     end
     []
+  end
+
+  def make_book_list(array_hashes)
+    array_hashes.map { |book| Book.new(book['title'], book['author'], book['id']) }
+  end
+
+  def make_people_list(array_hashes)
+    array_hashes.map do |people|
+      if people['class'] == 'Student'
+        Student.new(age: people['age'], name: people['name'],
+                    parent_permission: people['permission'], id: people['id'])
+      else
+        Teacher.new(age: people['age'], name: people['name'], specialization: people['spec'],
+                    parent_permission: people['permission'], id: people['id'])
+      end
+    end
+  end
+
+  def make_rental_list(array_hashes, list_book, list_people)
+    array_hashes.map do |rental|
+      Rental.new(rental['date'], list_book.detect do |b|
+                                   b.id == rental['book']
+                                 end, list_people.detect do |p|
+                                        p.id == rental['person']
+                                      end)
+    end
+  end
+
+  def fetch_data(list_book = [], list_people = [])
+    array_hashes = extract_data
+    return [] if array_hashes.empty?
+
+    array_object = []
+    case @type
+    when 'books'
+      array_object = make_book_list(array_hashes)
+    when 'people'
+      array_object = make_people_list(array_hashes)
+    when 'rental'
+      array_object = make_rental_list(array_hashes, list_book, list_people)
+    end
+    array_object
   end
 
   def save_data(data)
@@ -63,7 +77,8 @@ class JsonAccessor
         'parent_permission' => element.parent_permission, 'id' => element.id }.to_json
     else
       { 'class' => element.class, 'name' => element.name, 'age' => element.age,
-        'specialization' => element.specialization, 'parent_permission' => element.parent_permission, 'id' => element.id }.to_json
+        'specialization' => element.specialization, 'parent_permission' => element.parent_permission,
+        'id' => element.id }.to_json
     end
   end
 
