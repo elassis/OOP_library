@@ -1,9 +1,11 @@
 require './rental'
 class RentalsManager
-  def initialize(books, people)
+  attr_reader :list_rentals
+
+  def initialize(books, people, rentals_accessor)
     @books = books
     @people = people
-    @list_rentals = []
+    @list_rentals = rentals_accessor.fetch_data(@books.list_books, @people.list_people)
   end
 
   def insert_rentals

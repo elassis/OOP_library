@@ -13,7 +13,8 @@ class App
     @books = BooksManager.new(@books_accessor)
     @people_accessor = JsonAccessor.new('people')
     @people = PeopleManager.new(@people_accessor)
-    @rentals = RentalsManager.new(@books, @people)
+    @rentals_accessor = JsonAccessor.new('rental')
+    @rentals = RentalsManager.new(@books, @people, @rentals_accessor)
   end
 
   def read_input(num)
@@ -42,6 +43,7 @@ class App
       if option == '7'
         @books_accessor.save_data(@books.list_books)
         @people_accessor.save_data(@people.list_people)
+        @rentals_accessor.save_data(@rentals.list_rentals)
         break
       end
       read_input(option)
