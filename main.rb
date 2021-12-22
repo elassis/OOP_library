@@ -5,12 +5,16 @@ require './rental'
 require './people_manager'
 require './books_manager'
 require './rentals_manager'
+require './json_accessors'
 
 class App
   def initialize
-    @books = BooksManager.new
-    @people = PeopleManager.new
-    @rentals = RentalsManager.new(@books, @people)
+    @books_accessor = JsonAccessor.new('books')
+    @books = BooksManager.new(@books_accessor)
+    @people_accessor = JsonAccessor.new('people')
+    @people = PeopleManager.new(@people_accessor)
+    @rentals_accessor = JsonAccessor.new('rental')
+    @rentals = RentalsManager.new(@books, @people, @rentals_accessor)
   end
 
   def read_input(num)
@@ -36,8 +40,12 @@ class App
       puts "1) List all Books\n2) List all People\n3) Create a Person\n4) Create a Book\n"
       puts "5) Create a Rental\n6) List all rentals for a given person id\n7) Exit"
       option = gets.chomp
-      break if option == '7'
-
+      if option == '7'
+        @books_accessor.save_data(@books.list_books)
+        @people_accessor.save_data(@people.list_people)
+        @rentals_accessor.save_data(@rentals.list_rentals)
+        break
+      end
       read_input(option)
     end
   end
