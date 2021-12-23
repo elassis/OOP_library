@@ -29,6 +29,7 @@
 ### Run tests
 
 - You need Rspec installed. If not, do it with `gem install rspec`.
+- To run the tests with `rspec spec`.
 
 ## Authors
 
