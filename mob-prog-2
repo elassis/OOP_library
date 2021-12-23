@@ -1,0 +1,20 @@
+function appendAndDelete(s, t, k) {
+    let sA;
+    let tA;
+    for (let i = 0; i < k; i++) {
+        if (s.length - i < 0) {
+            sA = "";
+        } else {
+            sA = s.slice(0, s.length - i);
+        }
+        if (t.length - (k - i) < 0) {
+            tA = "";
+        } else {
+            tA = t.slice(0, t.length - (k - i));
+        }
+        if (sA == tA) {
+            return "Yes";
+        }     
+    }
+    return "No";
+}
