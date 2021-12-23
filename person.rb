@@ -1,6 +1,6 @@
 require './corrector'
 class Person
-  attr_reader :rentals
+  attr_reader :rentals, :name, :age
 
   def initialize(age:, name: 'unknown', parent_permission: true, id: 0)
     @id = id.zero? ? rand(1...100) : id
