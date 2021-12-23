@@ -4,8 +4,7 @@ describe Corrector do
   context 'testing Corrector class' do
     it 'should return Dyaryraoof' do
       corrector = Corrector.new
-      MY_NAME = 'dyaryraoof20'
-      expect(corrector.correct_name(MY_NAME)).to eq 'Dyaryraoof'
+      expect(corrector.correct_name('dyaryraoof20')).to eq 'Dyaryraoof'
     end
   end
 end
