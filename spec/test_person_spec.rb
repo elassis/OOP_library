@@ -20,9 +20,14 @@ end
 
 describe Person do
   context 'Test Person can_use_services method' do
-    student = Person.new(age: 15, name: 'Mike', parent_permission: false)
     it 'should return false' do
+      student = Person.new(age: 15, name: 'Mike', parent_permission: false)
       expect(student.can_use_services?).to be false
+    end
+
+    it 'should return true' do
+      student = Person.new(age: 18, name: 'Mike', parent_permission: false)
+      expect(student.can_use_services?).to be true
     end
   end
 end
