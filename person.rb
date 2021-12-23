@@ -1,6 +1,6 @@
 require './corrector'
 class Person
-  attr_reader :rentals
+  attr_reader :rentals, :name, :id, :age, :parent_permission
 
   def initialize(age:, name: 'unknown', parent_permission: true, id: 0)
     @id = id.zero? ? rand(1...100) : id
@@ -32,7 +32,7 @@ class Person
   end
 
   def can_use_services?
-    is_of_age? && @parent_permission == true
+    of_age? || @parent_permission == true
   end
 
   def correct_name
