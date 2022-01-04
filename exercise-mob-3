@@ -1,0 +1,4 @@
+function squares(a, b) {
+// getting the square brackets between two numbers
+    return (Math.floor(Math.sqrt(b)) - Math.ceil(Math.sqrt(a)) + 1);
+}
